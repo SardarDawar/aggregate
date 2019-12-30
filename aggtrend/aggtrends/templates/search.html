@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %}{{query}} | {{block.super}}{% endblock %}
+        
+{% block content %}
+<article>
+  <div class="article-list">
+ 
+
+    {% if blogs %}
+   
+    <h4>Search Results for  <em style="color:#3aabf0">{{query}}</em></h4>
+
+        <div class="spacing-m"></div>
+        {% for  blogs in blogs %}  
+        <div class="row">
+            <div class="col-md-5 col-xs-12">
+                <a href="{% url 'detail' blogs.slug %}">
+                    {% if blogs.image %}
+                    <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-md-7 col-xs-12">
+                <h2 class="post-title"><a href="{% url 'detail' blogs.slug %}">{{blogs.title}}</a></h2>
+                <p>{{blogs.description}}</p>
+                <p class="meta">By <a href="{% url 'blog-by-author' blogs.author.id %}" class="meta-author">{{blogs.author.author}}</a></p>
+                <p><a class="btn btn-blue" href="{% url 'detail' blogs.slug %}">Read more</a></p>
+            </div>
+        </div>
+    
+        <hr class="divider-m" />
+    
+        {% endfor %}
+        {% endif %}
+        <div class="article-list">
+            {% if article %}
+
+                <div class="spacing-m"></div>
+                {% for  blogs in article %}  
+                <div class="row">
+                    <div class="col-md-5 col-xs-12">
+                        <a href="{% url 'detailarticle' blogs.catagory blogs.slug %}">
+                            {% if blogs.image %}
+                            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col-md-7 col-xs-12">
+                        <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory blogs.slug %}">{{blogs.title}}</a></h2>
+                        <p>{{blogs.description|safe}}</p>
+                        <p class="meta">By <a href="{% url 'blog-by-author' blogs.author.id %}" class="meta-author">{{blogs.author.author}}</a></p>
+                        <p><a class="btn btn-blue" href="{% url 'detailarticle' blogs.catagory blogs.slug %}">Read more</a></p>
+                    </div>
+                </div>
+            
+                <hr class="divider-m" />
+            
+                {% endfor %}
+        </div>
+              
+       
+    
+           
+                
+         
+           
+            
+    
+    {% else %}
+        <h4>No articles found for: <em style="color:#3aabf0">{{query}}</em></h4> 
+        <hr class="divider-m" />
+        
+        <h4>Recent articles</h4>
+        {% for list in list  %}
+        {% if forloop.counter <= 5 %}
+        <div class="row">
+            <div class="col-md-5 col-xs-12">
+                <a href="{% url 'detail' list.slug %}">
+                    {% if list.image %}
+                    <img src="/media/{{list.image}}" alt="{{ list.title }}" class="hover-shadow" />
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-md-7 col-xs-12">
+                <h2 class="post-title"><a href="{% url 'detail' list.slug %}">{{list.title}}</a></h2>
+                <p>{{list.description}}</p>
+                <p class="meta">By <a href="{% url 'blog-by-author' list.author.id %}" class="meta-author">{{list.author.author}}</a></p>
+                <p><a class="btn btn-blue" href="{% url 'detail' list.slug %}">Read more</a></p>
+            </div>
+        </div>
+        {% endif %}
+        <hr class="divider-m" />
+        {% endfor %}
+        {% for list in list1  %}
+        {% if forloop.counter <= 5 %}
+        <div class="row">
+            <div class="col-md-5 col-xs-12">
+                <a href="{% url 'detailarticle' list.catagory list.slug %}">
+                    {% if list.image %}
+                    <img src="/media/{{list.image}}" alt="{{ list.title }}" class="hover-shadow" />
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-md-7 col-xs-12">
+                <h2 class="post-title"><a href="{% url 'detailarticle' list.catagory  list.slug %}">{{list.title}}</a></h2>
+                <p>{{list.description}}</p>
+                <p class="meta">By <a href="{% url 'blog-by-author' list.author.id %}" class="meta-author">{{list.author.author}}</a></p>
+                <p><a class="btn btn-blue" href="{% url 'detailarticle' list.catagory list.slug %}">Read more</a></p>
+            </div>
+        </div>
+        {% endif %}
+        <hr class="divider-m" />
+        {% endfor %}
+        {% endif %}
+ <!--hereeeeeeeeeee-->
+    {% if blogs.has_other_pages %}
+    <ul class="pagination">
+        {% if blogs.has_previous %}
+          <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in blogs.paginator.page_range %}
+          {% if blogs.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if blogs.has_next %}
+          <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+    
+    
+  </div><!-- .container -->
+</article>
+
+<article>
+  
+      
+      
+    </div><!-- .container -->
+  </article>
+{% endblock %}
+
+
+
+
+

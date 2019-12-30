@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block heading %}<h1>Devoted to Web Development</h1>{% endblock %}
+
+{% block content %}
+
+<!--<article>
+  <div class="sponsor sponsor-h">
+      <img src="/media/Billboard dummy ad 1200.PNG" alt="sponsor" />
+  </div>
+</article> -->
+
+<!--BOOTSTRAP GRID HERE-->
+<h1>Recents</h1>
+{% for  blogs in latest reversed %}
+{% if forloop.counter == 1 %}
+{% if blogs.code_post %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% if forloop.counter == 2 %}
+{% if blogs.code_post %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% if forloop.counter == 3 %}
+{% if blogs.code_post %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+{% if forloop.counter == 4 %}
+{% if blogs.code_post %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% if forloop.counter == 5 %}
+{% if blogs.code_post %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% else %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+<br>
+
+                <!--REGULAR POSTS STARTS FOM HERE-->
+<h1>REGULAR POSTS</h1>
+<div class="article-list">
+ 
+{% for  blogs in latest reversed %}
+{% if forloop.counter >= 6  %}
+{% if blogs.code_post %}
+    <article>
+        {% if blogs.image %}
+        <div class="card-thumb hover-shadow">
+            <a href="{% url 'detail' blogs.slug %}"><img src="/media/{{blogs.image}}" > </a>
+        </div>
+        {% endif %}
+        <div>
+            <h2 class="post-title"><a href="{% url 'detail' blogs.slug %}" >{{blogs.title}}</a></h2> 
+            <p class="meta"> By <a class="meta-author" href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>, <em class="meta-date">{{blogs.created_at|date}}</em></p>
+            <p>{{blogs.description}}</p>
+        </div>
+    </article>
+    {% else %}
+    <article>
+        {% if blogs.image %}
+        <div class="card-thumb hover-shadow">
+            <a href="{% url 'detailarticle' blogs.catagory blogs.slug %}"><img src="/media/{{blogs.image}}" > </a>
+        </div>
+        {% endif %}
+        <div>
+            <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory blogs.slug %}" >{{blogs.title}}</a></h2> 
+            <p class="meta"> By <a class="meta-author" href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>, <em class="meta-date">{{blogs.created_at|date}}</em></p>
+            <p>{{blogs.description|safe}}</p>
+
+            
+        </div>
+    </article>
+{% endif %}
+{% endif %}
+{% endfor %}
+
+{% if blogs.has_other_pages %}
+  <ul class="pagination">
+    {% if blogs.has_previous %}
+      <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in blogs.paginator.page_range %}
+      {% if blogs.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if blogs.has_next %}
+      <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+
+{% endif %}
+</div>
+<!--
+<div class="sponsor sponsor-h">
+    <img src="/media/Billboard dummy ad 1200.PNG" alt="sponsor" />
+</div>-->
+</div>
+</article> 
+
+<div class="article-list">
+
+
+</div>
+
+{% endblock %}

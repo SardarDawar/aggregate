@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews | {{block.super}}{% endblock %}
+
+{% block heading %}<h1>test</h1>{% endblock %}
+        
+{% block content %}
+
+
+
+<div class="grid"> 
+        {% if articles %}
+      {% for  blogs in articles %}
+        <div class="card">
+            {% if blogs.image %}
+            <div class="card-thumb">
+                <a href="{% url 'postsasin' blogs.slug %}"><img src="/media/{{blogs.image}}" alt="{{blogs.title}}"> </a>
+            </div>
+            {% endif %}
+            <div class="card-detail">
+                <h2><a href="{% url 'postsasin' blogs.slug %}">{{blogs.title}}</a></h2>
+                <p class="clearfix">By <a href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a><span class="pull-right">{{blogs.created_at|date}}</span></p>
+            </div>
+        </div>
+      {% endfor %}
+
+      {% if blogs.has_other_pages %}
+        <ul class="pagination">
+          {% if blogs.has_previous %}
+            <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+          {% for i in blogs.paginator.page_range %}
+            {% if blogs.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if blogs.has_next %}
+            <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+    {% endif %}
+
+{% endblock %}
+

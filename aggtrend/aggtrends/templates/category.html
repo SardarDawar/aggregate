@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+        
+{% block content %}
+<div class="container" style="background:white">
+        <div class="row">
+            <div class="col-md-8">
+                {% for  blogs in blogs %}  
+
+<a  href="{% url 'detail' blogs.slug %}"  style="color:black; "><strong >{{blogs.title}}</strong></a><br> 
+By <a href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>   <br><br><br>
+
+ <a href="{% url 'detail' blogs.slug %}"><img src="/media/{{blogs.image}}" style="height:500px;width:500px;"> </a>
+ 
+ <br><br><br>
+<p>{{blogs.description}}</p>
+
+
+<hr style= ' background-color: red; height: 1px; border: 0; '>
+{% endfor %}
+</div>
+ <div class="col-xs-4">
+
+
+
+ </div>
+</div></div>
+
+{% endblock %}

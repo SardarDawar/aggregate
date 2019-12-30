@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{blogs.title}} | {{block.super}}{% endblock %}
+
+{% block content %}
+
+<!--
+<div class="sponsor sponsor-h">
+    <img src="/media/Billboard dummy ad 1200.PNG" alt="sponsor" />
+</div>
+-->
+<div class="content">
+    <article>
+        <div class="post-thumb">
+            <img src="/media/{{blogs.image}}">
+        </div>
+
+        <h1>{{blogs.title}}</h1>
+        <p class="meta">By <a class="meta-author" href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>, <em class="meta-date">{{blogs.created_at|date}}</em></p> 
+        <p>{{blogs.description}}</p>
+        <!--
+        <div class="sponsor sponsor-art-top">
+            <img src="/media/Billboard dummy ad 728.PNG" alt="sponsor" />
+        </div>
+        -->
+            <div class="shadow-wrapper">
+                {% for i in example %}
+                    <div class="shadow-card">
+
+                        <div class="card-header" style="background-image: url(/media/{{i.image}})">
+                        {% if i.image %}
+                            <!-- Image Code -->
+                            <img src="/media/16x9.png" class="shadow-image" />
+                        {% else %}
+                            <!-- Video Code -->
+                            <video muted="" loop="">
+                                    <source src='/media/{{i.videofile }}' type='video/mp4'>
+                                    Your browser does not support the video tag.
+                            </video>
+                            <span class="hover-video">Hover to play</span>
+                        {% endif %}
+                        </div>
+
+                        <div class="card-content">
+                            <p><span><small>Title:</small>{{i.title}}</span></p> 
+                            <p class="text-center"><span><small>Author:</small>{{i.author}}</span></p>
+                            <p class="text-right"><span><small>Created on:</small>{{blogs.created_at|date}}</span></p>
+                            <p><span><small>Created using:</small>{{i.madewith}}</span></p> 
+                            <p class="text-center"><span><small>Responsive:</small>{{i.responsive}}</span></p>
+                            <p class="desc"><small>Code description:</small> {{i.description}}</p> 
+                            <a class="btn btn-blue" href="{{i.links}}" target="_blank">Code and Demo</a>
+                        </div>
+                        <!--
+                        <div class="card-footer">
+                        button moved to card content 
+                        </div>
+                        -->
+                    </div>
+                {% endfor %}
+                <!--
+                <div class="sponsor sponsor-h">
+                    <img src="/media/Billboard dummy ad 1200.PNG" alt="sponsor" />
+                </div>
+                -->
+                <div class="sponsor-wrap">
+                    <img src="../media/dummy ad 1.png" />
+                </div>
+            </div>
+    </article>
+</div>
+
+
+{% endblock %}
+
+
+
+    

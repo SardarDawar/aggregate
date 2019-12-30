@@ -1,0 +1,159 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>{% block title %}DevDevout{% endblock %}</title>
+        <link rel="icon" href="{% static 'Dev_Devout_Favicon.ico' %}" type="image/gif" >
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300:400" crossorigin="anonymous">
+        -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    </head>
+    <body id="top">
+        <div class="sidebar">
+            <nav>
+                <ul>
+                    <li>
+                        <h4><a href="{% url 'list' %}" rel="home">
+                            <img src="../static/Dev_Devout_Logo.png" alt="site logo" class="logo" />Dev Devout
+                        </a></h4>
+                    </li>
+                    <li><a href="{% url 'html-code-examples' %}">HTML</a></li>
+                    <li><a href="{% url 'css-code-examples' %}">CSS</a></li>
+                    <li><a href="{% url 'javascript-code-examples' %}">JavaScript</a></li>
+                    <li><a href="{% url 'fashion' %}">fashion</a></li>
+                    <li><a href="{% url 'finance' %}">finance</a></li>
+                    <li><a href="{% url 'home_Life' %}">Home_Life</a></li>
+                    <li><a href="{% url 'technology' %}">Technology</a></li>
+                    <li><a href="{% url 'software' %}">Software</a></li>
+
+                    
+                </ul>
+            </nav>
+        </div>  
+        
+        <div class="main">
+            <div class="header">
+                <div class="form-wrap">
+                    <a id="toggle-menu">
+                        <span></span>
+                    </a>
+                    <form  action="/search/" id="form-search">
+                        <input type="text" class="field" name="query" id="s" placeholder="Search" />
+                        <a href="#close" class="clear-input fa fa-close"></a>
+                        <button type="submit" class="submit" name="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!--Content before waves-->
+                <div class="inner-header flex">
+                    {% block heading %}{% endblock %}
+                </div>
+                
+                <!--Waves Container--
+                <div class="wave-overlay" hidden>
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="geometricPrecision">
+                    <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                        <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                    </g>
+                    </svg>
+                </div>
+                Waves end-->
+                    
+            </div>
+            <!--Header ends-->
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="footer">
+                <div class="footer-nav">
+                    <nav>
+                        <ul>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+                            <li><a href="{% url 'affiliations' %}">Affiliate Disclosure</a></li>
+                            
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; {% now "Y" %} | Dev Devout | All Rights Reserved</p>
+                </div>
+            </div>
+
+        </div>
+        <a href="#top" class="to-top"></a>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+        <script>(function(j){
+            j('#s').on({
+                keyup: function(){
+                    if ( this.value.trim().length > 1 )
+                        j('#form-search').addClass('fill');
+                    else
+                        j('#form-search').removeClass('fill');
+                }
+            });
+
+            j('.clear-input').click(function(e){
+                e.preventDefault();
+                j('#s').val('');
+                j('#form-search').removeClass('fill');
+            })
+
+            j('#toggle-menu').click(function(e){
+                e.preventDefault();
+                j('body').toggleClass('menu-open')
+            });
+
+        /*
+        if ( typeof scrollY == 'undefined' ){
+            j('svg use').attr('y', 10);
+            wave(0, 7000);
+            wave(1, 9000);
+            wave(2, 11000);
+            wave(3, 20000);
+
+            var inv1 = setInterval(function(){
+                wave(0, 7000);
+            }, 7000);
+            var inv1 = setInterval(function(){
+                wave(1, 10000);
+            }, 10000);
+            var inv3 = setInterval(function(){
+                wave(2, 13000);
+            }, 13000);
+            var inv4 = setInterval(function(){
+                wave(3, 20000);
+            }, 20000);
+        }
+            function wave(n, t) {
+
+                j('svg use:nth-child('+ (n+1) +')').animate(
+                    { x: 175},
+                    {
+                        duration: t,
+                        step: function(e){
+                            j(this).attr('x', e)
+                        }
+                    }
+                )
+            }
+            */
+        })(jQuery)</script>
+
+    </body>
+</html>

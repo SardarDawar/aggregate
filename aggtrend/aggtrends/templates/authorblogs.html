@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{author.author}} | {{block.super}}{% endblock %}
+
+{%  block content %}
+<div class="container">
+    <div class="t-row">
+    {% if '' in request.path %}
+        <figure class="t-cell avatar">
+            <img src="/media/{{ author.image }}" alt="{{ author.author }}" />
+        </figure>
+        <div class="t-cell">
+            <h3 class="post-title">{{author.author}}</h3>
+            <h5>{{author.bio}}</h5>
+        </div>
+    {% endif %}
+    </div>
+</div>
+<div class="spacing-m"></div>
+
+<div class="container">
+
+<h4>Posts by {{ author.author }}</h4>
+<div class="spacing-m"></div>
+{% for blogs in blogs %}
+
+    <div class="row">
+        <div class="col-md-5 col-xs-12">
+            <a href="{% url 'detail' blogs.slug %}">
+                {% if blogs.image %}
+                <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <h2 class="post-title"><a href="{% url 'detail' blogs.slug %}">{{blogs.title}}</a></h2>
+            <p>{{blogs.description}}</p>
+            <p class="meta">By <a href="{% url 'blog-by-author' blogs.author.id %}" class="meta-author">{{blogs.author.author}}</a></p>
+            <p><a class="btn btn-blue" href="{% url 'detail' blogs.slug %}">Read more</a></p>
+        </div>
+    </div>
+    <hr class="divider-m" />
+
+{% endfor %}
+
+{% for blogs in articles %}
+
+    <div class="row">
+        <div class="col-md-5 col-xs-12">
+            <a href="{% url 'detailarticle' blogs.catagory blogs.slug %}">
+                {% if blogs.image %}
+                <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-md-7 col-xs-12">
+            <h2 class="post-title"><a href="{% url 'detailarticle' blogs.catagory blogs.slug %}">{{blogs.title}}</a></h2>
+            <p>{{blogs.description|safe}}</p>
+            <p class="meta">By <a href="{% url 'blog-by-author' blogs.author.id %}" class="meta-author">{{blogs.author.author}}</a></p>
+            <p><a class="btn btn-blue" href="{% url 'detailarticle' blogs.catagory blogs.slug %}">Read more</a></p>
+        </div>
+    </div>
+    <hr class="divider-m" />
+
+{% endfor %}
+</div><!-- .article-list -->
+
+{% endblock %}

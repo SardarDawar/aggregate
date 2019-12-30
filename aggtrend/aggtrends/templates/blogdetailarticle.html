@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{blogs.title}} | {{block.super}}{% endblock %}
+
+{% block content %}
+
+<!--
+<div class="sponsor sponsor-h">
+    <img src="/media/Billboard dummy ad 1200.PNG" alt="sponsor" />
+</div>
+-->
+<div class="content">
+    <article>
+            <h1>{{blogs.title}}</h1>
+            <p class="meta">By <a class="meta-author" href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a>, <em class="meta-date">{{blogs.created_at|date}}</em></p> 
+
+        <div class="post-thumb">
+            <img src="/media/{{blogs.image}}">
+        </div>
+
+       
+        <p>{{blogs.description|safe}}</p>
+        <!--
+        <div class="sponsor sponsor-art-top">
+            <img src="/media/Billboard dummy ad 728.PNG" alt="sponsor" />
+        </div>
+        -->
+                            <!--
+                <div class="sponsor sponsor-h">
+                    <img src="/media/Billboard dummy ad 1200.PNG" alt="sponsor" />
+                </div>
+                -->
+              {% if context %}
+                {% for product,review,image in context %}
+                <h3>{{product.title}}</h3><br>
+                <h3>{{product.author}}</h3><br>
+                <img src="{{image}}"><br>
+                <iframe src="{{review}}" height="500px" width="100%"></iframe>
+                <h3>{{product.description|safe}}</h3><br>
+                  <br>
+               
+              
+        
+              {% endfor %}
+              {% endif %}
+                <div class="sponsor-wrap">
+                    <img src="../media/dummy ad 1.png" />
+                </div>
+            </div>
+    </article>
+</div>
+
+
+{% endblock %}
+
+
+
+    

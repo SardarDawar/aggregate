@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}CSS Code Examples | {{block.super}}{% endblock %}
+
+{% block heading %}<h1>CSS Code Examples</h1>{% endblock %}
+
+{% block content %}
+<h1>Recents</h1>
+{% for  blogs in blogs %}
+{% if forloop.counter == 1 %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+
+
+{% endif %}
+<hr class="divider-m" />
+
+{% if forloop.counter == 2 %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+
+
+{% endif %}
+<hr class="divider-m" />
+
+{% if forloop.counter == 3 %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+
+
+{% endif %}
+<hr class="divider-m" />
+{% if forloop.counter == 4 %}
+<div class="row">
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+
+
+{% endif %}
+<hr class="divider-m" />
+
+{% if forloop.counter == 5 %}
+<div class="row"> 
+    <div class="col-md-5 col-xs-12">
+        <a href="{% url 'detail'  blogs.slug %}">
+            {% if blogs.image %}
+            <img src="/media/{{blogs.image}}" alt="{{ blogs.title }}" class="hover-shadow" />
+            {% endif %}
+        </a>
+    </div>
+    <div class="col-md-7 col-xs-12">
+        <h2 class="post-title"><a href="{% url 'detail'  blogs.slug %}">{{blogs.title}}</a></h2>
+        <p>{{blogs.catagory}}</p>
+    </div>
+</div>
+
+
+{% endif %}
+<hr class="divider-m" />
+{% endfor %}
+<div class="grid"> 
+  <h1>Regular </h1>
+  {% for  blogs in blogs %}
+  {% if forloop.counter >= 6 %}
+    <div class="card">
+        {% if blogs.image %}
+        <div class="card-thumb">
+            <a href="{% url 'detail' blogs.slug %}"><img src="/media/{{blogs.image}}" alt="{{blogs.title}}"> </a>
+        </div>
+        {% endif %}
+        <div class="card-detail">
+            <h2><a href="{% url 'detail' blogs.slug %}">{{blogs.title}}</a></h2>
+            <p class="clearfix">By <a href="{% url 'blog-by-author' blogs.author.id %}">{{blogs.author.author}}</a><span class="pull-right">{{blogs.created_at|date}}</span></p>
+        </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+
+
+  {% if blogs.has_other_pages %}
+    <ul class="pagination">
+      {% if blogs.has_previous %}
+        <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in blogs.paginator.page_range %}
+        {% if blogs.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if blogs.has_next %}
+        <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+</div>
+ 
+{% for key, values in articles.items %}
+  
+<h1>subcategory:{{key}}</h1> <br>
+{% for i in values %}
+<h5>{{i.title}}</h5>
+<p class="clearfix">By <a href="{% url 'blog-by-author' i.author.id %}">{{i.author.author}}</a><span class="pull-right">{{blogs.created_at|date}}</span></p>
+
+<img  src="/media/{{i.image}}" >
+{% endfor %}
+{% endfor %}
+
+{% endblock %}
